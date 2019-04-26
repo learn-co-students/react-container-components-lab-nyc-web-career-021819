@@ -25,13 +25,15 @@ export default class SearchableMovieReviewsContainer extends Component {
     event.preventDefault()
     const searchValue = event.target.children[1].value;
     console.log(event.target.children[1].value);
+   
 
     // fetch using the search value
     (async () => {
-      const resp = await fetch(searchUrl + this.state.searchTerm + `api-key=${process.env.REACT_APP_NYT_API_KEY}`)
+      await this.setState({searchTerm: searchValue});
+      console.log("url", searchUrl + this.state.searchTerm + `?api-key=${process.env.REACT_APP_NYT_API_KEY}`)
+      const resp = await fetch(searchUrl + this.state.searchTerm + `&api-key=${process.env.REACT_APP_NYT_API_KEY}`)
       const searchedMoviesFromApi = await resp.json()
-      this.setState(
-        {searchedMovies: searchedMoviesFromApi, searchTerm: searchValue}, console.log("api resp", searchedMoviesFromApi))
+      this.setState({searchedMovies: searchedMoviesFromApi}, console.log("api resp", searchedMoviesFromApi))
     })()
   }
 
