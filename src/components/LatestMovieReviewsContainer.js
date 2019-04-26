@@ -28,7 +28,7 @@ export default class LatestMovieReview extends Component {
 
   render() {
     console.log(process.env.REACT_APP_NYT_API_KEY)
-    return <div className="latest-movie-reviews"><MovieReviews latestMovies={this.state.latestMovies}/></div>
+    return <div className="latest-movie-reviews"><MovieReviews movieResults={this.state.latestMovies}/></div>
   }
 }
 

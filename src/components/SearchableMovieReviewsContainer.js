@@ -14,7 +14,7 @@ const URL = 'https://api.nytimes.com/svc/movies/v2/reviews/all.json?'
 export default class SearchableMovieReviewsContainer extends Component {
   
   state = {
-    searchedMovies: ["example response"],
+    searchedMovies: [],
     searchTerm: ""
   }
 
@@ -33,7 +33,7 @@ export default class SearchableMovieReviewsContainer extends Component {
       console.log("url", searchUrl + this.state.searchTerm + `?api-key=${process.env.REACT_APP_NYT_API_KEY}`)
       const resp = await fetch(searchUrl + this.state.searchTerm + `&api-key=${process.env.REACT_APP_NYT_API_KEY}`)
       const searchedMoviesFromApi = await resp.json()
-      this.setState({searchedMovies: searchedMoviesFromApi}, console.log("api resp", searchedMoviesFromApi))
+      this.setState({searchedMovies: searchedMoviesFromApi.results}, console.log("api resp", searchedMoviesFromApi.results))
     })()
   }
 
@@ -44,7 +44,7 @@ export default class SearchableMovieReviewsContainer extends Component {
     return (
     <div className="searchable-movie-reviews">
       <SearchForm handleSubmit={this.handleSubmit} />
-      {/* <MovieReviews searchedMovies={this.state.searchedMovies}/> */}
+      <MovieReviews movieResults={this.state.searchedMovies}/>
     </div>
     )
   }

@@ -16,9 +16,9 @@ import React from 'react'
 
 const MovieReviews = (props) => {
 
-  console.log("MR Props", props.latestMovies)
+  console.log("MR Props", props.movieResults)
   
-  const movies = props.latestMovies
+  const movies = props.movieResults
   function renderLatestMovieList() {
    
     console.log("rendering movie list!")
